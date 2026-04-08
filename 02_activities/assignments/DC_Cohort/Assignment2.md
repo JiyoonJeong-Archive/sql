@@ -14,10 +14,10 @@
     * Open a private window in your browser. Copy and paste the link to your pull request into the address bar. Make sure you can see your pull request properly. This helps the technical facilitator and learning support staff review your submission easily.
 
 Checklist:
-- [ ] Create a branch called `assignment-two`.
-- [ ] Ensure that the repository is public.
-- [ ] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
-- [ ] Verify that the link is accessible in a private browser window.
+- [O] Create a branch called `assignment-two`.
+- [O] Ensure that the repository is public.
+- [O] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
+- [O] Verify that the link is accessible in a private browser window.
 
 If you encounter any difficulties or have questions, please don't hesitate to reach out to our team via our Slack. Our Technical Facilitators and Learning Support staff are here to help you navigate any challenges.
 
@@ -56,7 +56,25 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+Here is a clearer and more polished version of your assignment with improved wording, consistency, and academic tone:
+
+---
+
+< Type 2: Retain Changes >
+
+This design maintains a full history of address changes by introducing versioning fields (effective_date, end_date, is_current). Whenever a customer’s address changes, the existing record is marked as inactive (is_current = False), and a new record is inserted with the updated information.
+- This approach corresponds to a Type 2 Slowly Changing Dimension (SCD). It enables historical tracking and analysis, allowing queries such as identifying a customer’s address at a specific point in time (e.g., it could track where a customer lived when they made a purchase three years ago).
+- Type 2 table contains:
+customer_id (PK, FK), street_address, city, state, zip_code, effective_date (Date), end_date (Date), is_current (Boolean)
+
+-----
+< Type 1: Overwrite >
+
+In this design, the table stores only the customer’s current address, linked by customer_id. When a customer moves, the existing record is simply updated with the new address (street_address, city, state, zip code), and the previous address is permanently overwritten.
+- This approach corresponds to a Type 1 Slowly Changing Dimension (SCD). It is straightforward to implement and maintain, but it does not preserve any historical address data, making it unsuitable for analyses that require past information.
+- Type 1 table contains:
+customer_id (PK, FK), street_address, city, state, zip_code
+
 ```
 
 ***
@@ -191,5 +209,11 @@ Consider, for example, concepts of labour, bias, LLM proliferation, moderating c
 
 
 ```
-Your thoughts...
+The core ethical issue in the article is the intentional invisibility of human labor in the tech sector. We often talk about “AI” as if it’s a purely technical or mathematical achievement, but Boykis, the writer, shows that it actually depends on thousands of human workers behind the scenes. They do the repetitive and often tedious task of data labeling usually for low pay and with little recognition. This creates a hierarchy of labor: engineers and developers receive credit and status, while the people doing the foundational work remain hidden and undervalued.
+This human labor is closely tied to the issue of algorithmic bias. If neural networks are really “people all the way down,” then they inevitably reflect the perspectives and limitations of the people who train them. Data labeling involves judgment, cultural assumptions, and sometimes rushed decisions under pressure. If the workforce doing this labeling is not diverse are constrained by certain guidelines, those biases can become embedded in the system. As a result, what looks like a neutral technological output is actually shaped by human subjectivity, which can then be applied to millions of users of AI services.
+Another major concern is the psychological cost of content moderation. Many of these workers are required to review disturbing or graphic material in order to train AI systems to detect it. This kind of work can have serious mental health consequences, yet it is often outsourced and poorly supported. By framing AI as an automated, machine-driven process, companies are able to distance themselves from the human toll involved. This raises important ethical questions about responsibility of the companies, especially when the well-being of these workers (who might be outsourced) is treated as secondary to efficiency and profit.
+There is also a broader issue of accountability in AI systems, particularly as large language models become more widespread. When the AI systems show biased outputs or harmful content, it is often unclear who is responsible. Companies might blame the model, engineers might point to the data, and the labor behind that data remains invisible. This diffusion of responsibility makes it difficult to address harm in a meaningful way. If AI systems are truly built on layers of human decisions, then accountability should also be distributed across those layers, rather than deflected or obscured.
+Finally, the rapid expansion of AI raises concerns about how human knowledge and expression are being used. These systems are trained on massive amounts of data, much of it taken from publicly available sources without clear consent from the people who created it. In this sense, AI can be seen as commodifying collective human effort without paying for it, turning it into a product that primarily benefits large tech companies. This creates an imbalance where value is extracted from many individuals, but the rewards are concentrated among a few. It creates a discrepancy in terms of who contributes to AI systems and who ultimately benefits from them.
+Overall, Boykis’s article make us recognize the human labor, decisions, and inequalities that shape these technologies, and to think more critically about the ethical responsibilities that come with them.
+
 ```
